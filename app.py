@@ -12,20 +12,20 @@ svc_classifier = pickle.load(pickle_in2)
 pickle_in3 = open("knn_model.pkl", "rb")
 knn_classifier = pickle.load(pickle_in3)
 
-pickle_in3 = open("decision_model.pkl", "rb")
-decision = pickle.load(pickle_in3)
+pickle_in4 = open("decision_model.pkl", "rb")
+decision = pickle.load(pickle_in4)
 
-pickle_in3 = open("random_forest_model.pkl", "rb")
-random_forest = pickle.load(pickle_in3)
+pickle_in5 = open("random_forest_model.pkl", "rb")
+random_forest = pickle.load(pickle_in5)
 
-pickle_in3 = open("extra_trees_model.pkl", "rb")
-et = pickle.load(pickle_in3)
+pickle_in6 = open("extra_trees_model.pkl", "rb")
+et = pickle.load(pickle_in6)
 
-pickle_in3 = open("adaboost_model.pkl", "rb")
-ada = pickle.load(pickle_in3)
+pickle_in7 = open("adaboost_model.pkl", "rb")
+ada = pickle.load(pickle_in7)
 
-pickle_in3 = open("xgboost_model.pkl", "rb")
-xgb = pickle.load(pickle_in3)
+pickle_in8 = open("xgboost_model.pkl", "rb")
+xgb = pickle.load(pickle_in8)
 
 
 
