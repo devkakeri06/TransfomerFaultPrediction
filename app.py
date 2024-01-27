@@ -12,6 +12,22 @@ svc_classifier = pickle.load(pickle_in2)
 pickle_in3 = open("knn_model.pkl", "rb")
 knn_classifier = pickle.load(pickle_in3)
 
+pickle_in3 = open("decision_model.pkl", "rb")
+decision = pickle.load(pickle_in3)
+
+pickle_in3 = open("random_forest_model.pkl", "rb")
+random_forest = pickle.load(pickle_in3)
+
+pickle_in3 = open("extra_trees_model.pkl", "rb")
+et = pickle.load(pickle_in3)
+
+pickle_in3 = open("adaboost_model.pkl", "rb")
+ada = pickle.load(pickle_in3)
+
+pickle_in3 = open("xgboost_model.pkl", "rb")
+xgb = pickle.load(pickle_in3)
+
+
 
 def predict_probability(OTI, WTI, ATI, OLI, OTI_A, OTI_T, VL1, VL2, VL3, IL1, IL2, IL3, VL12, VL23,	VL31, INUT):
 
@@ -41,7 +57,26 @@ def predict_probability(OTI, WTI, ATI, OLI, OTI_A, OTI_T, VL1, VL2, VL3, IL1, IL
     knn_pred = knn_classifier.predict([[OTI,	WTI,	ATI,	OLI,	OTI_A,	OTI_T, VL1,	VL2,	VL3,	IL1,	IL2,	IL3,	VL12,	VL23,	VL31,	INUT]])
     knn_pred = knn_pred[0]
 
-    probability = ((lr_pred + svc_pred + knn_pred) / 3.0) * 100.0
+    decision_pred = decision.predict([[OTI, WTI, ATI, OLI, OTI_A, OTI_T, VL1, VL2, VL3, IL1, IL2, IL3, VL12, VL23, VL31, INUT]])
+    decision_pred = decision_pred[0]
+
+# Random Forest
+    random_forest_pred = random_forest.predict([[OTI, WTI, ATI, OLI, OTI_A, OTI_T, VL1, VL2, VL3, IL1, IL2, IL3, VL12, VL23, VL31, INUT]])
+    random_forest_pred = random_forest_pred[0]
+
+# Extra Trees
+    et_pred = et.predict([[OTI, WTI, ATI, OLI, OTI_A, OTI_T, VL1, VL2, VL3, IL1, IL2, IL3, VL12, VL23, VL31, INUT]])
+    et_pred = et_pred[0]
+
+# AdaBoost
+    ada_pred = ada.predict([[OTI, WTI, ATI, OLI, OTI_A, OTI_T, VL1, VL2, VL3, IL1, IL2, IL3, VL12, VL23, VL31, INUT]])
+    ada_pred = ada_pred[0]
+
+# XGBoost
+    xgb_pred = xgb.predict([[OTI, WTI, ATI, OLI, OTI_A, OTI_T, VL1, VL2, VL3, IL1, IL2, IL3, VL12, VL23, VL31, INUT]])
+    xgb_pred = xgb_pred[0]
+
+    probability = ((lr_pred + svc_pred + knn_pred + decision_pred + random_forest_pred + et_pred + ada_pred + xgb_pred ) / 8.0) * 100.0
     probability = round(probability, 2)
 
     answer = ""
